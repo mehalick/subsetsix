@@ -1,9 +1,13 @@
+
 var builder = DistributedApplication.CreateBuilder(args);
 
-var apiService = builder.AddProject<Projects.Subsetsix_ApiService>("apiservice")
-    .WithHttpsHealthCheck("/health");
+var dynamoDb = builder.AddAWSDynamoDBLocal("dynamodb");
 
-builder.AddProject<Projects.Subsetsix_Web>("webfrontend")
+var apiService = builder.AddProject<Projects.Subsetsix_ApiService>("api")
+    .WithHttpsHealthCheck("/health")
+    .WithReference(dynamoDb);
+
+builder.AddProject<Projects.Subsetsix_Web>("web")
     .WithExternalHttpEndpoints()
     .WithHttpsHealthCheck("/health")
     .WithReference(apiService)

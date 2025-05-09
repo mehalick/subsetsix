@@ -1,23 +1,33 @@
+global using Amazon.DynamoDBv2;
+global using FastEndpoints;
+global using Subsetsix.ApiService.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add service defaults & Aspire client integrations.
 builder.AddServiceDefaults();
-
-// Add services to the container.
+builder.Services.AddFastEndpoints();
 builder.Services.AddProblemDetails();
-
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+var options = builder.Configuration.GetAWSOptions();
+builder.Services.AddDefaultAWSOptions(options);
+builder.Services.AddAWSService<IAmazonDynamoDB>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+if (builder.Environment.IsDevelopment())
+{
+    await app.Services.TryCreateTable();
+}
+
 app.UseExceptionHandler();
 
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.UseFastEndpoints();
 
 string[] summaries = ["Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"];
 
@@ -37,9 +47,18 @@ app.MapGet("/weatherforecast", () =>
 
 app.MapDefaultEndpoints();
 
-app.Run();
+await app.RunAsync();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int) (TemperatureC / 0.5556);
+}
+
+record Item(string ItemId, string UserId)
+{
+    public string Date { get; init; } = "";
+    public string Title { get; init; } = "";
+    public string Description { get; init; } = "";
+    public string Tags { get; init; } = "";
+
 }
