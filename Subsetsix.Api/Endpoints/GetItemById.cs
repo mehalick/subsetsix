@@ -1,6 +1,8 @@
-﻿using Amazon.DynamoDBv2.Model;
+﻿using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.Model;
+using FastEndpoints;
 
-namespace Subsetsix.ApiService.Endpoints;
+namespace Subsetsix.Api.Endpoints;
 
 // ReSharper disable once ClassNeverInstantiated.Global
 public record GetItemByIdRequest(string ItemId);

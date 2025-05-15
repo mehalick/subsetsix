@@ -1,6 +1,7 @@
-global using Amazon.DynamoDBv2;
-global using FastEndpoints;
-global using Subsetsix.ApiService.Configuration;
+using Amazon.DynamoDBv2;
+using FastEndpoints;
+using Subsetsix.Api;
+using Subsetsix.Api.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,16 +50,19 @@ app.MapDefaultEndpoints();
 
 await app.RunAsync();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+namespace Subsetsix.Api
 {
-    public int TemperatureF => 32 + (int) (TemperatureC / 0.5556);
-}
+    record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+    {
+        public int TemperatureF => 32 + (int) (TemperatureC / 0.5556);
+    }
 
-record Item(string ItemId, string UserId)
-{
-    public string Date { get; init; } = "";
-    public string Title { get; init; } = "";
-    public string Description { get; init; } = "";
-    public string Tags { get; init; } = "";
+    record Item(string ItemId, string UserId)
+    {
+        public string Date { get; init; } = "";
+        public string Title { get; init; } = "";
+        public string Description { get; init; } = "";
+        public string Tags { get; init; } = "";
 
+    }
 }

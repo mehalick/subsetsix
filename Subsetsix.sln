@@ -4,9 +4,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subsetsix.AppHost", "Subset
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subsetsix.ServiceDefaults", "Subsetsix.ServiceDefaults\Subsetsix.ServiceDefaults.csproj", "{03FC440F-2CA5-4555-A2C0-94DC89614A3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subsetsix.ApiService", "Subsetsix.ApiService\Subsetsix.ApiService.csproj", "{ABF07220-C463-4F70-8DC7-21583CF0FCAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subsetsix.Api", "Subsetsix.Api\Subsetsix.Api.csproj", "{ABF07220-C463-4F70-8DC7-21583CF0FCAE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subsetsix.Web", "Subsetsix.Web\Subsetsix.Web.csproj", "{6A616829-F504-4ABE-B199-74AC8BFBAE4C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{321C7B89-6AB0-463C-A7F1-060F5ABF2CCF}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

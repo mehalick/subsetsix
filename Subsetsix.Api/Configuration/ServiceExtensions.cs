@@ -1,7 +1,7 @@
 ﻿using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.Model;
 
-namespace Subsetsix.ApiService.Configuration;
+namespace Subsetsix.Api.Configuration;
 
 public static class ServiceExtensions
 {

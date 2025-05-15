@@ -1,4 +1,4 @@
-﻿namespace Subsetsix.ApiService;
+﻿namespace Subsetsix.Api;
 
 public static class Constants
 {

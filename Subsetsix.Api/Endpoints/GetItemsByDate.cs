@@ -1,12 +1,17 @@
-﻿using Amazon.DynamoDBv2.Model;
+﻿using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.Model;
+using FastEndpoints;
+using JetBrains.Annotations;
 
-namespace Subsetsix.ApiService.Endpoints;
+namespace Subsetsix.Api.Endpoints;
 
-// ReSharper disable ClassNeverInstantiated.Global
+[PublicAPI]
 public record GetItemsByDateRequest(DateOnly Date);
 
+[PublicAPI]
 public record GetItemsByDateResponse(List<GetItemsByDateResponseItem> Items);
 
+[PublicAPI]
 public record GetItemsByDateResponseItem(
     string ItemId,
     string UserId,
