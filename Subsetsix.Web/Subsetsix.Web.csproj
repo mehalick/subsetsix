@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
     <ItemGroup>
+        <ProjectReference Include="..\Subsetsix.Api.Shared\Subsetsix.Api.Shared.csproj" />
         <ProjectReference Include="..\Subsetsix.ServiceDefaults\Subsetsix.ServiceDefaults.csproj"/>
     </ItemGroup>
 

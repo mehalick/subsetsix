@@ -1,28 +1,10 @@
-﻿using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.Model;
-using FastEndpoints;
-using JetBrains.Annotations;
-
-namespace Subsetsix.Api.Endpoints;
-
-[PublicAPI]
-public record GetItemsByDateRequest(DateOnly Date);
-
-[PublicAPI]
-public record GetItemsByDateResponse(List<GetItemsByDateResponseItem> Items);
-
-[PublicAPI]
-public record GetItemsByDateResponseItem(
-    string ItemId,
-    string UserId,
-    string Title,
-    List<string> Tags);
+﻿namespace Subsetsix.Api.Endpoints;
 
 public class GetItemsByDate(IAmazonDynamoDB client) : Endpoint<GetItemsByDateRequest, GetItemsByDateResponse>
 {
     public override void Configure()
     {
-        Get("/items/getItemsByDate");
+        Get(ApiRoutes.Items.GetItemsByDate);
         AllowAnonymous();
     }
 

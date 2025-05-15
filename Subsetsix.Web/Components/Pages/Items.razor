@@ -1,0 +1,58 @@
+﻿@page "/items"
+@using Subsetsix.Api.Shared
+@using Subsetsix.Api.Shared.Endpoints.Items
+@using Subsetsix.Web.Extensions
+@attribute [StreamRendering(true)]
+@attribute [OutputCache(Duration = 5)]
+@inject NavigationManager NavManager
+@inject ApiClient Api
+
+<PageTitle>@_title</PageTitle>
+
+<h1>@_title</h1>
+
+<p>This component demonstrates showing data loaded from a backend API service.</p>
+
+@if (_items == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>UserId</th>
+            <th>Title</th>
+            <th>Tags</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var forecast in _items)
+        {
+            <tr>
+                <td>@forecast.ItemId</td>
+                <td>@forecast.UserId</td>
+                <td>@forecast.Title</td>
+                <td>@string.Join(", ", forecast.Tags)</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private DateOnly? _date;
+    private string _title = "Items";
+    private GetItemsByDateResponseItem[]? _items;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _date = NavManager.TryGetDate("date");
+        _title = $"{_title} | {_date:yyyy-MM-dd}";
+        _items = await Api.GetItemsByDate(_date.Value);
+    }
+}

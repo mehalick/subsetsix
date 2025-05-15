@@ -1,5 +1,8 @@
-using Amazon.DynamoDBv2;
-using FastEndpoints;
+global using Amazon.DynamoDBv2;
+global using Amazon.DynamoDBv2.Model;
+global using FastEndpoints;
+global using Subsetsix.Api.Shared;
+global using Subsetsix.Api.Shared.Endpoints.Items;
 using Subsetsix.Api;
 using Subsetsix.Api.Configuration;
 
