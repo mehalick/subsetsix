@@ -10,7 +10,7 @@ internal abstract class Program
     {
         var app = CoconaApp.Create();
 
-        app.AddCommand("show", ([Argument] string root, [Argument] string scale) =>
+        app.AddCommand("show", ([Argument] string root, [Argument] string scale, [Option('f')] int? frets) =>
             {
                 var rootNote = Note.FromId(root);
                 var noteScale = Scale.FromId(scale);
@@ -31,7 +31,7 @@ internal abstract class Program
 
                 foreach (var stringNote in strings)
                 {
-                    WriteString(rootNote, stringNote, notesInScale);
+                    WriteString(rootNote, stringNote, notesInScale, frets.GetValueOrDefault(20));
                 }
 
                 Console.WriteLine();
@@ -41,11 +41,11 @@ internal abstract class Program
         app.Run();
     }
 
-    private static void WriteString(Note root, Note note, List<Note> notes)
+    private static void WriteString(Note root, Note note, List<Note> notes, int frets)
     {
         var stringNotes = new List<Note>();
 
-        for (var i = 0; i < 20; i++)
+        for (var i = 0; i < frets; i++)
         {
             stringNotes.Add(note.Next(i));
         }
