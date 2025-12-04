@@ -3,10 +3,8 @@ namespace Subsetsix;
 public class Note
 {
     public string Name { get; }
-    public string Id { get; }
 
     private static readonly Dictionary<string, Note> NotesById = new Dictionary<string, Note>();
-    private static readonly Dictionary<string, Note> NotesByName = new Dictionary<string, Note>();
     private static readonly List<Note> NoteList = [];
 
     public static readonly Note A = new Note("A");
@@ -24,11 +22,10 @@ public class Note
 
     private Note(string name)
     {
+        var id = name.ToLowerInvariant();
         Name = name;
-        Id = name.Replace("#", "-sharp");
 
-        NotesById.Add(Id, this);
-        NotesByName.Add(Name, this);
+        NotesById.Add(id, this);
         NoteList.Add(this);
     }
 
@@ -36,8 +33,6 @@ public class Note
     {
         var index = NoteList.IndexOf(this);
         var newIndex = index + i;
-
-        //Console.WriteLine($"{i} - {index} - {newIndex}");
 
         while (newIndex >= NoteList.Count)
         {
@@ -47,8 +42,13 @@ public class Note
         return NoteList[newIndex];
     }
 
-    public Note FromName(string name)
+    public static Note FromId(string id)
     {
-        return NotesById[name];
+        return NotesById.GetValueOrDefault(id.ToLowerInvariant(), C);
+    }
+
+    public override string ToString()
+    {
+        return Name;
     }
 }

@@ -10,41 +10,43 @@ internal abstract class Program
     {
         var app = CoconaApp.Create();
 
-        var root = Note.C;
-
-        //var scale = new int[] { 0, 2, 4, 5, 7, 9, 11 };
-        var notesInScale = new[]
-        {
-            Note.C, Note.D, Note.E, Note.F, Note.G, Note.A, Note.B
-        };
-
-        app.AddCommand("list", () =>
-        {
-            var strings = new List<Note>
+        app.AddCommand("show", ([Argument] string root, [Argument] string scale) =>
             {
-                Note.F,
-                Note.C,
-                Note.G,
-                Note.C
-            };
+                var rootNote = Note.FromId(root);
+                var noteScale = Scale.FromId(scale);
+                var notesInScale = noteScale.GetNotes(rootNote);
+                var notesString = string.Join(", ", notesInScale.Select(i => i.ToString()));
 
-            foreach (var note in strings)
-            {
-                WriteString(root, note, notesInScale);
-            }
-        });
+                var strings = new List<Note>
+                {
+                    Note.F,
+                    Note.C,
+                    Note.G,
+                    Note.C
+                };
+
+                Console.WriteLine();
+                Console.WriteLine($"{rootNote} {noteScale} [{notesString}]");
+                Console.WriteLine();
+
+                foreach (var stringNote in strings)
+                {
+                    WriteString(rootNote, stringNote, notesInScale);
+                }
+
+                Console.WriteLine();
+            })
+            .WithDescription("Shows the fret board with scale notes.");
 
         app.Run();
     }
 
-    private static void WriteString(Note root, Note note, Note[] notes)
+    private static void WriteString(Note root, Note note, List<Note> notes)
     {
         var stringNotes = new List<Note>();
 
         for (var i = 0; i < 20; i++)
         {
-            // get note for index on string, if in scale "X" else "-"
-
             stringNotes.Add(note.Next(i));
         }
 
