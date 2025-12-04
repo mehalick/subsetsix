@@ -6,15 +6,11 @@ public class Scale
     private readonly int[] _positions;
     private static readonly Dictionary<string, Scale> ScalesById = new Dictionary<string, Scale>();
 
-    public List<Note> GetNotes(Note root)
-    {
-        return _positions.Select(root.Next).ToList();
-    }
-
     public static readonly Scale Major = new Scale("Major", [0, 2, 4, 5, 7, 9, 11]);
     public static readonly Scale Minor = new Scale("Minor", [0, 2, 3, 5, 7, 8, 10]);
     public static readonly Scale Dorian = new Scale("Dorian", [0, 2, 3, 5, 7, 9, 10]);
 
+    // https://github.com/ruiiiijiiiiang/daily_scale/blob/main/src/scales.rs
     // Scale::Major => &[0, 2, 4, 5, 7, 9, 11],
     // Scale::HarmonicMinor => &[0, 2, 3, 5, 7, 8, 11],
     // Scale::MelodicMinor => &[0, 2, 3, 5, 7, 9, 11],
@@ -33,6 +29,11 @@ public class Scale
     // Scale::Aeolian => &[0, 2, 3, 5, 7, 8, 10],
     // Scale::Locrian => &[0, 1, 3, 5, 6, 8, 10],
 
+    public List<Note> GetNotes(Note root)
+    {
+        return _positions.Select(root.Next).ToList();
+    }
+
     private Scale(string name, int[] positions)
     {
         var id = name.Replace(" ", "-").ToLowerInvariant();
@@ -44,7 +45,7 @@ public class Scale
 
     public static Scale FromId(string id)
     {
-        return ScalesById[id];
+        return ScalesById.GetValueOrDefault(id.ToLowerInvariant(), Major);
     }
 
     public override string ToString()

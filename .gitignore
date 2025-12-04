@@ -1,8 +1,7 @@
-# Visual Studio
+# IDEs
 .vs/
-
-# Visual Studio Code
 .vscode
+.idea
 
 # User-specific files
 *.suo
@@ -25,12 +24,3 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
-artifacts/
-
-# NPM
-node_modules
-**/wwwroot/dist/
-**/publish/
-
-.idea/.idea.BananaTracks/.idea/
-
