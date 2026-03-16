@@ -6,9 +6,9 @@ public class Scale
     private readonly int[] _positions;
     private static readonly Dictionary<string, Scale> ScalesById = new Dictionary<string, Scale>();
 
-    public static readonly Scale Major = new Scale("Major", [0, 2, 4, 5, 7, 9, 11]);
-    public static readonly Scale Minor = new Scale("Minor", [0, 2, 3, 5, 7, 8, 10]);
-    public static readonly Scale Dorian = new Scale("Dorian", [0, 2, 3, 5, 7, 9, 10]);
+    private static readonly Scale Major = new Scale("Major", [0, 2, 4, 5, 7, 9, 11]);
+    private static readonly Scale Minor = new Scale("Minor", [0, 2, 3, 5, 7, 8, 10]);
+    private static readonly Scale Dorian = new Scale("Dorian", [0, 2, 3, 5, 7, 9, 10]);
 
     // https://github.com/ruiiiijiiiiang/daily_scale/blob/main/src/scales.rs
     // Scale::Major => &[0, 2, 4, 5, 7, 9, 11],

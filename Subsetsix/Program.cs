@@ -61,21 +61,23 @@ internal abstract class Program
                 sb.Append($"{n.Name} ");
             }
 
+            var name = $"{n.Name}{DashThin}"[..2];
+
             if (n == root)
             {
                 sb.Append(DashThin, 3);
-                sb.Append(CircleClosed);
+                sb.Append(name);
                 sb.Append(DashThin, 3);
             }
             else if (notes.Contains(n))
             {
                 sb.Append(DashThin, 3);
-                sb.Append(CircleOpen);
+                sb.Append(name);
                 sb.Append(DashThin, 3);
             }
             else
             {
-                sb.Append(DashThin, 7);
+                sb.Append(DashThin, 8);
             }
 
             if (isFirst)

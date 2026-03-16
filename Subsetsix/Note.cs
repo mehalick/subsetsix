@@ -8,17 +8,17 @@ public class Note
     private static readonly List<Note> NoteList = [];
 
     public static readonly Note A = new Note("A");
-    public static readonly Note ASharp = new Note("A#");
+    public static readonly Note ASharp = new Note("Bb");
     public static readonly Note B = new Note("B");
     public static readonly Note C = new Note("C");
-    public static readonly Note CSharp = new Note("C#");
+    public static readonly Note CSharp = new Note("Db");
     public static readonly Note D = new Note("D");
-    public static readonly Note DSharp = new Note("D#");
+    public static readonly Note DSharp = new Note("Eb");
     public static readonly Note E = new Note("E");
     public static readonly Note F = new Note("F");
-    public static readonly Note FSharp = new Note("F#");
+    public static readonly Note FSharp = new Note("Gb");
     public static readonly Note G = new Note("G");
-    public static readonly Note GSharp = new Note("G#");
+    public static readonly Note GSharp = new Note("Ab");
 
     private Note(string name)
     {

@@ -9,6 +9,7 @@
 *.userosscache
 *.sln.docstates
 *.tss
+.DS_Store
 
 # Build results
 [Dd]ebug/
